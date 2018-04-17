@@ -26,6 +26,33 @@ function add_data(option){
    console.log(goodnessScore)
    console.log(strengthScore)
    console.log(personaMapping(goodnessScore, strengthScore))
+
+   // RENDER NEW VIEW
+   $('#quiz_panel').fadeOut()
+   $('body').append(`<h3 id="greet_msg" style="position: absolute;left: 0;right: 0;margin: auto;width:50%;margin-top:11%;display:none;color:white;text-align:center;font-size:35pt">Your persona is ready ...</h3>`)
+
+   setTimeout(()=>{
+    $('#greet_msg').fadeIn()
+   }, 800)
+
+   setTimeout(()=>{
+     $('#greet_msg').fadeOut()
+   }, 2300)
+
+
+
+   setTimeout(()=>{
+     let video = document.getElementById('myVideo')
+     let source = document.getElementById('video_src')
+
+     source.setAttribute('src', 'src/video/newtrim.mp4')
+     video.load()
+     video.play()
+
+     setTimeout(()=>{
+       video.pause()
+     }, 1500)
+   },3000)
   }
 
 

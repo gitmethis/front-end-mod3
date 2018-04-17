@@ -1,0 +1,28 @@
+
+<html>
+<head>
+  <link rel="stylesheet" href="src/quiz.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="quiz_panel" style="display:none">
+
+ <h3 id="question">When faced with an existential life crisis, I woul.</h3>
+ <div class="option" onclick="add_data(this)" id="option1">
+   <h5>Driving across the country</h5>
+  </div>
+ <div class="option"  onclick="add_data(this)" id="option2">
+   <h5>Be in peaceful solitude</h5>
+  </div><br>
+ <div class="option"  onclick="add_data(this)" id="option3">
+   <h5>Hit mailboxes with a bat</h5>
+  </div>
+ <div class="option"  onclick="add_data(this)" id="option4">
+   <h5>Immerse yourself in friendship</h5>
+  </div>
+</div>
+
+<p id="content"></p>
+<script src="src/quiz.js"></script>
+</body>
+</html>

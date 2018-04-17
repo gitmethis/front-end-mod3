@@ -1,0 +1,19 @@
+#quiz_panel{
+  display:block;margin:auto;width:55%;
+  text-align:center
+}
+
+h3{
+  font-size:25pt;color:white
+}
+
+.option{
+  display:inline-flex;background:#2f2e2e;color:white;padding:2%;
+  width:45%;border-radius:5%;margin-top:1%;height:90px;
+}
+h5{
+  text-align:center !important;font-size:20pt
+}
+.option:hover{
+  background:green;cursor:pointer
+}

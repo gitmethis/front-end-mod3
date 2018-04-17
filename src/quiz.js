@@ -6,8 +6,6 @@ let data = []
 let question = 1
 function add_data(option){
 
-
-
   // SET QUESTION 10
   if (question == 9){
     question = 10
@@ -23,6 +21,10 @@ function add_data(option){
 
     // LOG data
    console.log(data)
+   const goodnessScore = data.reduce((total, x, i) => (total + questions[i+1][x]['goodness']), 0)
+   const strengthScore = data.reduce((total, x, i) => (total + questions[i+1][x]['strength']), 0)
+   console.log(goodnessScore)
+   console.log(strengthScore)
   }
 
   // SET QUESTION 9
@@ -139,6 +141,210 @@ function add_data(option){
     $('#option2').html('<h5>Engineer</h5>')
     $('#option3').html('<h5>Sloth</h5>')
     $('#option4').html('<h5>Ruler of the World</h5>')
+  }
+
+}
+
+const questions = {
+	1: {
+		option1: {
+			goodness: 1,
+			strength: 1
+		},
+		option2: {
+			goodness: 1,
+			strength: -1
+		},
+		option3: {
+			goodness: -1,
+			strength: 1
+		},
+		option4: {
+			goodness: 1,
+			strength: -1
+		}
+	},
+	2: {
+		option1: {
+			goodness: 1,
+			strength: 1
+		},
+		option2: {
+			goodness: 1,
+			strength: -1
+		},
+		option3: {
+			goodness: 0,
+			strength: -1
+		},
+		option4: {
+			goodness: -1,
+			strength: 1
+		}
+	},
+	3: {
+		option1: {
+			goodness: -1,
+			strength: 1
+		},
+		option2: {
+			goodness: 1,
+			strength: -1
+		},
+		option3: {
+			goodness: 0,
+			strength: -1
+		},
+		option4: {
+			goodness: -1,
+			strength: 1
+		}
+	},
+	4: {
+		option1: {
+			goodness: -1,
+			strength: 1
+		},
+		option2: {
+			goodness: 1,
+			strength: 1
+		},
+		option3: {
+			goodness: 0,
+			strength: -1
+		},
+		option4: {
+			goodness: 0,
+			strength: -1
+		}
+	},
+	5: {
+		option1: {
+			goodness: 0,
+			strength: -1
+		},
+		option2: {
+			goodness: 1,
+			strength: -1
+		},
+		option3: {
+			goodness: 0,
+			strength: 1
+		},
+		option4: {
+			goodness: 0,
+			strength: 1
+		}
+	},
+	6: {
+		option1: {
+			goodness: 0,
+			strength: 1
+		},
+		option2: {
+			goodness: 0,
+			strength: 1
+		},
+		option3: {
+			goodness: 0,
+			strength: 1
+		},
+		option4: {
+			goodness: 0,
+			strength: -1
+		}
+	},
+	7: {
+		option1: {
+			goodness: 0,
+			strength: -1
+		},
+		option2: {
+			goodness: 0,
+			strength: 1
+		},
+		option3: {
+			goodness: 0,
+			strength: 1
+		},
+		option4: {
+			goodness: 1,
+			strength: -1
+		}
+	},
+	8: {
+		option1: {
+			goodness: 1,
+			strength: -1
+		},
+		option2: {
+			goodness: 1,
+			strength: 1
+		},
+		option3: {
+			goodness: 0,
+			strength: -1
+		},
+		option4: {
+			goodness: 1,
+			strength: -1
+		}
+	},
+	9: {
+		option1: {
+			goodness: 0,
+			strength: -1
+		},
+		option2: {
+			goodness: 0,
+			strength: 1
+		},
+		option3: {
+			goodness: 0,
+			strength: -1
+		},
+		option4: {
+			goodness: 1,
+			strength: -1
+		}
+	},
+	10: {
+		option1: {
+			goodness: 1,
+			strength: 1
+		},
+		option2: {
+			goodness: 0,
+			strength: -1
+		},
+		option3: {
+			goodness: 0,
+			strength: 1
+		},
+		option4: {
+			goodness: 0,
+			strength: -1
+		}
+	}
+}
+
+function personaMapping(goodness, strength){
+  if (strength) >= 3){
+    if (goodness >= 0){
+      return "God" // replace these with instances of Persona class ???
+    } else {
+      return "Lucifer"
+    }
+  }
+
+  else {
+    if (goodness >= 3){
+      return "Oberon"
+    } else if (goodness <= 1){
+      return "Arahabaki"
+    } else {
+      return "Unicorn"
+    }
   }
 
 }

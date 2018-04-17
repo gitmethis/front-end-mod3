@@ -6,9 +6,9 @@ let data = []
 let question = 1
 function add_data(option){
 
-  // SET QUESTION 10
-  if (question == 9){
-    question = 10
+  // SET QUESTION 11
+  if (question == 10){
+    question = 11
     data.push(option.id)
     //$('#question').html(data[0])
     // ADD NEW QUESTIONS
@@ -25,6 +25,23 @@ function add_data(option){
    const strengthScore = data.reduce((total, x, i) => (total + questions[i+1][x]['strength']), 0)
    console.log(goodnessScore)
    console.log(strengthScore)
+   console.log(personaMapping(goodnessScore, strengthScore))
+  }
+
+
+  // SET QUESTION 10
+  if (question == 9){
+    question = 10
+    data.push(option.id)
+    //$('#question').html(data[0])
+    // ADD NEW QUESTIONS
+
+    $('#question').html('My biggest strength is:')
+    $('#option1').html('<h5>Integrity</h5>')
+    $('#option2').html('<h5>Empathy</h5>')
+    $('#option3').html('<h5>Intelligence</h5>')
+    $('#option4').html('<h5>Creativity</h5>')
+
   }
 
   // SET QUESTION 9
@@ -329,7 +346,7 @@ const questions = {
 }
 
 function personaMapping(goodness, strength){
-  if (strength) >= 3){
+  if (strength >= 3){
     if (goodness >= 0){
       return "God" // replace these with instances of Persona class ???
     } else {

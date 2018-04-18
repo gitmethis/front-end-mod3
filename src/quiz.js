@@ -4,6 +4,7 @@ $(function(){
 
 let data = []
 let question = 1
+let onlineUsers;
 function add_data(option){
 
   // SET QUESTION 11
@@ -77,8 +78,20 @@ function add_data(option){
          $('#message_box').fadeOut()
 
          // APPEND MAIN LOBBY div
-         $('body').append(`<div id="lobby"style="position: absolute;display:none;left: 0;right: 0;margin: auto;width:90%;margin-top:4%;background:#2f2e2e;opacity:0.7;height:90%"></div>`)
+         $('body').append(`<div id="lobby"style="position: absolute;display:none;left: 0;right: 0;margin: auto;width:90%;margin-top:4%;background:#2f2e2e;opacity:0.7;height:90%"><ul id="online_users"></ul></div>`)
          $('#lobby').fadeIn()
+
+         fetch('http://localhost:3000/users').then(resp => resp.json()).then(json => filterOnlineUsers(json))
+
+         function filterOnlineUsers(json){
+           console.log(json)
+           onlineUsers = json.filter(x=>x.online)
+           $('#online_users').append(onlineUsers.map(user=>`<li data-id="${user.id}">${user.username}</li>`).join(''))
+
+           $('#online_users').click((e)=>{
+             alert(e.target.dataset.id)
+           })
+         }
 
 
          // NOW SETUP POLLING

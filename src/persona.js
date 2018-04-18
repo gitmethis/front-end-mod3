@@ -1,7 +1,7 @@
 
 
 class Persona{
-  constructor(name, strength, agility, luck, magic, ability1, ability2, ability3, ability4){
+  constructor(name, strength, agility, luck, magic, ability1, ability2, ability3, ability4, url){
     this.name = name
     this.strength = strength
     this.ability = agility
@@ -11,6 +11,7 @@ class Persona{
     this.ability2 = ability2
     this.ability3 = ability3
     this.ability4 = ability4
+    this.url = url
   }
 
 }

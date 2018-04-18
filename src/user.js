@@ -1,8 +1,8 @@
 
 
 class User{
-  constructor(username, persona){
-    this.name = username
+  constructor(username){
+    this.username = username
   }
 
 }

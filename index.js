@@ -1,4 +1,26 @@
+let personas = []
+let currentUser;
 $(function(){
+
+
+  // GETS ALL PERSONAS THROUGH FETCH
+  fetch('http://localhost:3000/personaas')
+     .then(res=> res.json())
+     .then(json => personas = json.map(persona=> {
+       return new Persona(
+         persona.name,
+         persona.strength,
+         persona.agility,
+         persona.luck,
+         persona.magic,
+         persona.ability1,
+         persona.ability2,
+         persona.ability3,
+         persona.ability4,
+         persona.url
+       )
+     }))
+
 
   // GREETS
   setTimeout(()=>{
@@ -15,6 +37,11 @@ $(function(){
 
   // QUIZ FORM
   $('#name_input').change(()=>{
+
+    // CREATE NEW USER
+    currentUser = new User($('#name_input').val())
+
+
     console.log('this happened')
     // CHECK IF USER EXISTS ALREADY
     $('#intro_panel').remove()

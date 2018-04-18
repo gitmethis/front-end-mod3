@@ -26,6 +26,7 @@ function add_data(option){
    console.log(goodnessScore)
    console.log(strengthScore)
    console.log(personaMapping(goodnessScore, strengthScore))
+   personaFromTemplate(personaMapping(goodnessScore, strengthScore))
 
    // RENDER NEW VIEW
    $('#quiz_panel').fadeOut()
@@ -39,23 +40,29 @@ function add_data(option){
      $('#greet_msg').fadeOut()
    }, 2300)
 
-   
 
 
 
 
+   let video = document.getElementById('myVideo')
+   let source = document.getElementById('video_src')
 
 
    setTimeout(()=>{
-     let video = document.getElementById('myVideo')
-     let source = document.getElementById('video_src')
+     //let video = document.getElementById('myVideo')
+     //let source = document.getElementById('video_src')
 
      source.setAttribute('src', 'src/video/newtrim.mp4')
      video.load()
      video.play()
-
+     let currentPersona = personas.find(x => x.id === currentUser.persona_id)
+     currentPersona.url = currentPersona.url.slice(1)
      setTimeout(()=>{
        video.pause()
+
+       $('body').append(`<img src="${currentPersona.url}" style="position: absolute;left: 0;right: 0;margin: auto;width:30%;margin-top:4%;">`)
+       $('body').append(`<div id="message_box" style="position: absolute;left: 0;right: 0;margin: auto;width:80%;margin-top:34%;background:#2f2e2e"><h3>You are now infused with ${currentPersona.name}</h3></div>`)
+
      }, 1500)
    },3000)
   }
@@ -380,7 +387,7 @@ const questions = {
 function personaMapping(goodness, strength){
   if (strength >= 3){
     if (goodness >= 0){
-      return "God" // replace these with instances of Persona class ???
+      return "God"
     } else {
       return "Lucifer"
     }
@@ -395,5 +402,22 @@ function personaMapping(goodness, strength){
       return "Unicorn"
     }
   }
+}
 
+function personaFromTemplate(name){
+  const template = personas.find(x=>x.name === name)
+  const newPersona = Object.assign({}, template)
+  // id is copied from template's
+  newPersona.id = personas.length+1
+  currentUser.persona_id = newPersona.id
+
+  newPersona.luck = Math.floor(Math.random() * 3) + 1
+  newPersona.strength = Math.floor(Math.random() * 3) + 1
+  newPersona.agility = Math.floor(Math.random() * 3) + 1
+  newPersona.magic = Math.floor(Math.random() * 3) + 1
+
+  personas.push(newPersona)
+  console.log(newPersona)
+
+  return newPersona
 }

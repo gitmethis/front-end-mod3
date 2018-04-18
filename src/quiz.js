@@ -63,6 +63,14 @@ function add_data(option){
        $('body').append(`<img src="${currentPersona.url}" style="position: absolute;left: 0;right: 0;margin: auto;width:30%;margin-top:4%;">`)
        $('body').append(`<div id="message_box" style="position: absolute;left: 0;right: 0;margin: auto;width:80%;margin-top:34%;background:#2f2e2e"><h3>You are now infused with ${currentPersona.name}</h3></div>`)
 
+
+       $('#message_box').click(()=>{
+         // change video
+         console.log('msg box clicked')
+         source.setAttribute('src', 'src/video/blue.mp4')
+         video.load()
+         video.play()
+       })
      }, 1500)
    },3000)
   }

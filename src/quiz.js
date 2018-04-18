@@ -39,6 +39,11 @@ function add_data(option){
      $('#greet_msg').fadeOut()
    }, 2300)
 
+   
+
+
+
+
 
 
    setTimeout(()=>{

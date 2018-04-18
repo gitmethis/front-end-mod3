@@ -55,6 +55,9 @@ function add_data(option){
      source.setAttribute('src', 'src/video/newtrim.mp4')
      video.load()
      video.play()
+
+     currentUser.persona_id = personas.length + 1
+
      let currentPersona = personas.find(x => x.id === currentUser.persona_id)
      currentPersona.url = currentPersona.url.slice(1)
      setTimeout(()=>{

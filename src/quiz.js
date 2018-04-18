@@ -60,7 +60,7 @@ function add_data(option){
      setTimeout(()=>{
        video.pause()
 
-       $('body').append(`<img src="${currentPersona.url}" style="position: absolute;left: 0;right: 0;margin: auto;width:30%;margin-top:4%;">`)
+       $('body').append(`<img id="currentImage" src="${currentPersona.url}" style="position: absolute;left: 0;right: 0;margin: auto;width:30%;margin-top:4%;">`)
        $('body').append(`<div id="message_box" style="position: absolute;left: 0;right: 0;margin: auto;width:80%;margin-top:34%;background:#2f2e2e"><h3>You are now infused with ${currentPersona.name}</h3></div>`)
 
 
@@ -70,6 +70,16 @@ function add_data(option){
          source.setAttribute('src', 'src/video/blue.mp4')
          video.load()
          video.play()
+         $('#currentImage').fadeOut()
+         $('#message_box').fadeOut()
+
+         // APPEND MAIN LOBBY div
+         $('body').append(`<div id="lobby"style="position: absolute;display:none;left: 0;right: 0;margin: auto;width:90%;margin-top:4%;background:#2f2e2e;opacity:0.7;height:90%"></div>`)
+         $('#lobby').fadeIn()
+
+
+         // NOW SETUP POLLING
+
        })
      }, 1500)
    },3000)
@@ -419,10 +429,37 @@ function personaFromTemplate(name){
   newPersona.id = personas.length+1
   currentUser.persona_id = newPersona.id
 
+
+  console.log('this is current user ddddd' + JSON.stringify(currentUser))
+  newUserObj = {username: currentUser.username, online: currentUser.online, personaa_id: currentUser.persona_id}
+  console.log('this is newuser' + JSON.stringify(newUserObj))
+
+
+
+
+
+
+
   newPersona.luck = Math.floor(Math.random() * 3) + 1
   newPersona.strength = Math.floor(Math.random() * 3) + 1
   newPersona.agility = Math.floor(Math.random() * 3) + 1
   newPersona.magic = Math.floor(Math.random() * 3) + 1
+
+  fetch('http://localhost:3000/personaas', {
+    method:'POST',
+    headers:{'Content-Type': 'application/json'},
+    body: JSON.stringify(newPersona)
+  })
+
+  setTimeout(()=>{
+    fetch('http://localhost:3000/users', {
+      method:'POST',
+      headers:{'Content-Type': 'application/json'},
+      body: JSON.stringify(newUserObj)
+    })
+    newPersona.id = personas.length+1
+  }, 2000)
+
 
   personas.push(newPersona)
   console.log(newPersona)

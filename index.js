@@ -39,8 +39,8 @@ $(function(){
   $('#name_input').change(()=>{
 
     // CREATE NEW USER
-    currentUser = new User($('#name_input').val())
-
+    currentUser = new User($('#name_input').val(), undefined, true)
+    currentUser.online = true
 
     console.log('this happened')
     // CHECK IF USER EXISTS ALREADY

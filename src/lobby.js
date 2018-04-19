@@ -36,12 +36,11 @@ function showLobby(){
 
         function filterOnlineUsers(json){
           console.log(json)
-          onlineUsers = json.filter(x=>x.online)
+          onlineUsers = json.filter(x=>x.online && x.username !== currentUser.username)
+          $('#online_users').append(`<h1>Select thine enemy</h1>`)
           $('#online_users').append(onlineUsers.map(user=>`<li data-id="${user.id}">${user.username}</li>`).join(''))
 
           $('#online_users').click((e)=>{
-            debugger
-            alert(e.target.dataset.id)
             fetch('http://localhost:3000/battles', {
               method:'POST',
               headers:{
@@ -61,19 +60,29 @@ function showLobby(){
 
         // NOW SETUP POLLING
 
-        setInterval(()=>{
+
+
+        const battleFetcher = setInterval(()=>{
           fetch('http://localhost:3000/battles').then(res => res.json()).then(res => filterBattles(res))
-
-
         },500)
-     // let users = []
-        function filterBattles(json){
-          if (json.find(x=>x.user2_id === currentUser.id && x.request)){
 
-             $('#lobby').append(`<h2 id="challenge_box" style="position: absolute;display:none;left: 0;right: 0;margin: auto;width:90%;margin-top:4%;">${users[user1_id+1]}.username is challenging you...</h2>`)
+        function filterBattles(json){
+          battle = json.find(x=>x.user2_id === currentUser.id && x.request)
+
+          if (battle){
+            currentBattle = battle
+            window.clearInterval(battleFetcher)
+            let user1 = users.find(x=>x.id === battle.user1_id)
+
+             $('#lobby').html('') // make this a fade thing instead
+             $('#lobby').append(`<h2 id="challenge_box" style="position: absolute;display:none;left: 0;right: 0;margin: auto;width:90%;margin-top:4%;">${user1.username} is challenging you...</h2>`)
              setTimeout(()=>{
-               $('#challenge_box').fadeOut()
-             },2000)
+               $('#challenge_box').fadeIn()
+               setTimeout(()=>{
+                 showBattleScene()
+               }, 2000)
+             }, 2000)
+
           }
 
 

@@ -2,6 +2,7 @@ let personas = []
 let users = []
 let currentUser;
 let currentPersona;
+let currentBattle;
 $(function(){
 
 

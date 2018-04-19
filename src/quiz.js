@@ -101,7 +101,7 @@ function add_data(option){
 
     $('#question').html('My deepest fear:')
     $('#option1').html('<h5>Death</h5>')
-    $('#option2').html('<h5>Forever a failure</h5>')
+    $('#option2').html('<h5>Being forever a failure</h5>')
     $('#option3').html('<h5>Mediocrity</h5>')
     $('#option4').html('<h5>Chaos</h5>')
   }
@@ -115,9 +115,9 @@ function add_data(option){
     //$('#question').html(data[0])
     // ADD NEW QUESTIONS
 
-    $('#question').html('What does power mean to me:')
-    $('#option1').html('<h5>Social Influence</h5>')
-    $('#option2').html('<h5>Raw Physical Power</h5>')
+    $('#question').html('What power means to me:')
+    $('#option1').html('<h5>Social influence</h5>')
+    $('#option2').html('<h5>Raw physical power</h5>')
     $('#option3').html('<h5>Mentality</h5>')
     $('#option4').html('<h5>No preference</h5>')
   }
@@ -144,11 +144,11 @@ function add_data(option){
     //$('#question').html(data[0])
     // ADD NEW QUESTIONS
 
-    $('#question').html('Confrontatins are:')
-    $('#option1').html('<h5>Challenges of Dominance</h5>')
-    $('#option2').html('<h5>Resolved with Charisma</h5>')
+    $('#question').html('Confrontations are:')
+    $('#option1').html('<h5>Challenges of dominance</h5>')
+    $('#option2').html('<h5>Resolved with charisma</h5>')
     $('#option3').html('<h5>Things that I like to avoid</h5>')
-    $('#option4').html('<h5>annoying but necessary parts of life</h5>')
+    $('#option4').html('<h5>Annoying, but necessary, parts of life</h5>')
   }
 
 
@@ -162,8 +162,8 @@ function add_data(option){
     $('#question').html('Emotions are:')
     $('#option1').html('<h5>Troublesome necessities</h5>')
     $('#option2').html('<h5>The joys of life</h5>')
-    $('#option3').html('<h5>sometimes good, sometimes bad</h5>')
-    $('#option4').html('<h5>Not things that to be concerned about</h5>')
+    $('#option3').html('<h5>Sometimes good, sometimes bad</h5>')
+    $('#option4').html('<h5>Not to be concerned about</h5>')
   }
 
   // SET QUESTION 2
@@ -177,7 +177,7 @@ function add_data(option){
     $('#option1').html('<h5>Alchemist</h5>')
     $('#option2').html('<h5>Engineer</h5>')
     $('#option3').html('<h5>Sloth</h5>')
-    $('#option4').html('<h5>Ruler of the World</h5>')
+    $('#option4').html('<h5>Ruler of the world</h5>')
   }
 
 }
@@ -391,7 +391,6 @@ function personaFromTemplate(name){
   // id is copied from template's
   newPersona.id = personas.length+1
   currentUser.persona_id = newPersona.id
-  debugger
 
   newUserObj = {username: currentUser.username, online: currentUser.online, personaa_id: currentUser.persona_id}
   newPersona.luck = Math.floor(Math.random() * 3) + 1

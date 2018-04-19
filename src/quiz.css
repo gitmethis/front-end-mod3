@@ -9,7 +9,8 @@ h3{
 
 .option{
   display:inline-flex;background:#2f2e2e;color:white;padding:2%;
-  width:45%;border-radius:5%;margin-top:1%;height:90px;
+  width:45%;border-radius:5%;margin-top:1%;;
+  /* height:90px */
 }
 h5{
   text-align:center !important;font-size:20pt

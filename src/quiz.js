@@ -45,91 +45,9 @@ function add_data(option){
 
 
 
-   let video = document.getElementById('myVideo')
-   let source = document.getElementById('video_src')
-
-
-   setTimeout(()=>{
-     //let video = document.getElementById('myVideo')
-     //let source = document.getElementById('video_src')
-
-     source.setAttribute('src', 'src/video/newtrim.mp4')
-     video.load()
-     video.play()
-
-     currentUser.persona_id = personas.length + 1
-
-     let currentPersona = personas.find(x => x.id === currentUser.persona_id)
-     currentPersona.url = currentPersona.url.slice(1)
-     setTimeout(()=>{
-       video.pause()
-
-       $('body').append(`<img id="currentImage" src="${currentPersona.url}" style="position: absolute;left: 0;right: 0;margin: auto;width:30%;margin-top:4%;">`)
-       $('body').append(`<div id="message_box" style="position: absolute;left: 0;right: 0;margin: auto;width:80%;margin-top:34%;background:#2f2e2e"><h3>You are now infused with ${currentPersona.name}</h3></div>`)
-
-
-       $('#message_box').click(()=>{
-         // change video
-         console.log('msg box clicked')
-         source.setAttribute('src', 'src/video/blue.mp4')
-         video.load()
-         video.play()
-         $('#currentImage').fadeOut()
-         $('#message_box').fadeOut()
-
-         // APPEND MAIN LOBBY div
-         $('body').append(`<div id="lobby"style="position: absolute;display:none;left: 0;right: 0;margin: auto;width:90%;margin-top:4%;background:#2f2e2e;opacity:0.7;height:90%"><ul id="online_users"></ul></div>`)
-         $('#lobby').fadeIn()
-
-         fetch('http://localhost:3000/users').then(resp => resp.json()).then(json => filterOnlineUsers(json))
-
-         function filterOnlineUsers(json){
-           console.log(json)
-           onlineUsers = json.filter(x=>x.online)
-           $('#online_users').append(onlineUsers.map(user=>`<li data-id="${user.id}">${user.username}</li>`).join(''))
-
-           $('#online_users').click((e)=>{
-             alert(e.target.dataset.id)
-             fetch('http://localhost:3000/battles', {
-               method:'POST',
-               headers:{
-                 'Content-Type':'application/json'
-               },
-               body: JSON.stringify({
-                 user1_id:currentUser.id,
-                 user2_id:e.target.dataset.id,
-                 request: true
-               })
-             }).then(res=> res.json())
-           })
-         }
-
-
-         // NOW SETUP POLLING
-
-         setInterval(()=>{
-           fetch('http://localhost:3000/battles').then(res => res.json()).then(res => filterBattles(res))
-
-
-         },500)
-      // let users = []
-         function filterBattles(json){
-           if (json.find(x=>x.user2_id === currentUser.id && x.request)){
-
-              $('#lobby').append(`<h2 id="challenge_box" style="position: absolute;display:none;left: 0;right: 0;margin: auto;width:90%;margin-top:4%;">${users[user1_id+1]}.username is challenging you...</h2>`)
-              setTimeout(()=>{
-                $('#challenge_box').fadeOut()
-              },2000)
-           }
-
-
-         }
-
-       })
-     }, 1500)
-   },3000)
+   // call to show lobby
+   showLobby()
   }
-
 
   // SET QUESTION 10
   if (question == 9){
@@ -473,18 +391,9 @@ function personaFromTemplate(name){
   // id is copied from template's
   newPersona.id = personas.length+1
   currentUser.persona_id = newPersona.id
+  debugger
 
-
-  console.log('this is current user ddddd' + JSON.stringify(currentUser))
   newUserObj = {username: currentUser.username, online: currentUser.online, personaa_id: currentUser.persona_id}
-  console.log('this is newuser' + JSON.stringify(newUserObj))
-
-
-
-
-
-
-
   newPersona.luck = Math.floor(Math.random() * 3) + 1
   newPersona.strength = Math.floor(Math.random() * 3) + 1
   newPersona.agility = Math.floor(Math.random() * 3) + 1
@@ -495,6 +404,7 @@ function personaFromTemplate(name){
     headers:{'Content-Type': 'application/json'},
     body: JSON.stringify(newPersona)
   })
+
 
   setTimeout(()=>{
     fetch('http://localhost:3000/users', {
@@ -507,6 +417,7 @@ function personaFromTemplate(name){
 
 
   personas.push(newPersona)
+  currentPersona = newPersona
   console.log(newPersona)
 
   return newPersona

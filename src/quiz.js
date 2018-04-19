@@ -90,11 +90,40 @@ function add_data(option){
 
            $('#online_users').click((e)=>{
              alert(e.target.dataset.id)
+             fetch('http://localhost:3000/battles', {
+               method:'POST',
+               headers:{
+                 'Content-Type':'application/json'
+               },
+               body: JSON.stringify({
+                 user1_id:currentUser.id,
+                 user2_id:e.target.dataset.id,
+                 request: true
+               })
+             }).then(res=> res.json())
            })
          }
 
 
          // NOW SETUP POLLING
+
+         setInterval(()=>{
+           fetch('http://localhost:3000/battles').then(res => res.json()).then(res => filterBattles(res))
+
+
+         },500)
+      // let users = []
+         function filterBattles(json){
+           if (json.find(x=>x.user2_id === currentUser.id && x.request)){
+
+              $('#lobby').append(`<h2 id="challenge_box" style="position: absolute;display:none;left: 0;right: 0;margin: auto;width:90%;margin-top:4%;">${users[user1_id+1]}.username is challenging you...</h2>`)
+              setTimeout(()=>{
+                $('#challenge_box').fadeOut()
+              },2000)
+           }
+
+
+         }
 
        })
      }, 1500)

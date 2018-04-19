@@ -1,5 +1,5 @@
 function showBattleScene(){
-  currentBattle.request = false
+  // currentBattle.request = false  need to do a post for this, and maybe not right here
 
   const user1 = users.find(x=>x.id === currentBattle.user1_id)
   const user2 = users.find(x=>x.id === currentBattle.user2_id)

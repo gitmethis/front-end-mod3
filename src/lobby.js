@@ -40,19 +40,22 @@ function showLobby(){
           $('#online_users').append(onlineUsers.map(user=>`<li data-id="${user.id}">${user.username}</li>`).join(''))
 
           $('#online_users').click((e)=>{
+
+            currentBattle = {
+              user1_id: currentUser.id,
+              user2_id: parseInt(e.target.dataset.id),
+              request: true,
+              user1_hp:10,
+              user2_hp:10
+            }
+
             fetch('http://localhost:3000/battles', {
               method:'POST',
               headers:{
                 'Content-Type':'application/json'
               },
-              body: JSON.stringify({
-                user1_id: currentUser.id, // doesn't exist here
-                user2_id: parseInt(e.target.dataset.id),
-                request: true,
-                user1_hp:10,
-                user2_hp:10
-              })
-            }).then(res=> res.json())
+              body: JSON.stringify(currentBattle)
+            }).then(res => showBattleScene()) // need to set current battle first
           })
         }
 

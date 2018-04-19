@@ -11,7 +11,6 @@ function showLobby(){
     video.load()
     video.play()
 
-    currentPersona.url = currentPersona.url.slice(1)
     setTimeout(()=>{
       video.pause()
 

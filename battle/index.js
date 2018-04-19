@@ -1,59 +1,24 @@
-function showBattleScene(){
-  currentBattle.request = false
+let persona1 = {
+  name:'Jack Frost',
+  url:'https://vignette.wikia.nocookie.net/vsbattles/images/6/69/Jack_Frost_Render.png/revision/latest?cb=20170125185221',
+  strength:2,
+  magic:2,
+  agility:2,
+  luck:2
+}
 
-  const user1 = users.find(x=>x.id === currentBattle.user1_id)
-  const user2 = users.find(x=>x.id === currentBattle.user2_id)
-
-  const persona1 = personas.find(x=>x.id === user1.persona_id)
-  const persona2 = personas.find(x=>x.id === user2.persona_id)
-
-  $('body').html(`<div id="battle">
-    <div id="stage">
-    <div id="enemy_section">
-      <div id="enemy_name"></div>
-      <div id="enemy_hp">fs
-      </div>
-      <img id="enemy_img" src="">
-    </div>
-
-    <div id="user_section">
-      <div id="user_name"></div>
-      <div id="user_hp">
-      </div>
-    </div>
-
-    <div id="buttons" >
-       <button type="button" id="ability_button1"></button>
-  <!--      <button type="button" id="ability_button2"></button><br>
-       <button type="button" id="ability_button3"></button>
-       <button type="button" id="ability_button4"></button> -->
-    </div>
-    <h3 id="battle_msg">h0s</h3>
-  </div>
-  </div>`
-)
-
-// let persona1 = {
-//   name:'Jack Frost',
-//   url:'https://vignette.wikia.nocookie.net/vsbattles/images/6/69/Jack_Frost_Render.png/revision/latest?cb=20170125185221',
-//   strength:2,
-//   magic:2,
-//   agility:2,
-//   luck:2
-// }
-//
-// let persona2 = {
-//   name:'Belial',
-//   url:'https://vignette.wikia.nocookie.net/vsbattles/images/6/69/Jack_Frost_Render.png/revision/latest?cb=20170125185221',
-//   strength:2,
-//   magic:2,
-//   agility:2,
-//   luck:2,
-//   ability1:'Mazandyne',
-//   ability2:"God's Hand",
-//   ability3:'Virus Breath',
-//   ability4:'Life Aid'
-// }
+let persona2 = {
+  name:'Belial',
+  url:'https://vignette.wikia.nocookie.net/vsbattles/images/6/69/Jack_Frost_Render.png/revision/latest?cb=20170125185221',
+  strength:2,
+  magic:2,
+  agility:2,
+  luck:2,
+  ability1:'Mazandyne',
+  ability2:"God's Hand",
+  ability3:'Virus Breath',
+  ability4:'Life Aid'
+}
 
 $(function(){
   // DISPLAY NAMES
@@ -61,7 +26,6 @@ $(function(){
   $('#enemy_name').html(persona1.name)
 
   // DISPLAY ENEMY IMAGE
-  debugger
   $('#enemy_img').attr('src', persona1.url)
 })
 
@@ -385,23 +349,3 @@ $('#ability_button2').click((e)=>{
   $('#enemy_hp').width(enemyhp_bar_health)
 
 })
-
-
-
-
-  console.log(user1, user2, persona1, persona2)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}

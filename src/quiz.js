@@ -411,7 +411,8 @@ function personaFromTemplate(name){
       headers:{'Content-Type': 'application/json'},
       body: JSON.stringify(newUserObj)
     })
-    newPersona.id = personas.length+1
+    currentUser.id = users.length + 1
+    users.push(currentUser)
   }, 2000)
 
 

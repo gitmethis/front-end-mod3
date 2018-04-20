@@ -64,7 +64,7 @@ $(function(){
     if (!currentUser){
       currentUser = new User(newUsername)
       currentUser.online = true
-      users.push(currentUser)
+      // users.push(currentUser)
 
       // APPPEND NEW PANEL
       $('body').append(`<div id="quiz_panel" style="position: absolute;left: 0;right: 0;margin: auto;width:50%;margin-top:11%"><h3 id="question">When faced with an existential life crisis, I woul.</h3>

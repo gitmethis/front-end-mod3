@@ -1,4 +1,4 @@
-# Persona Imitation Game - School Project
+# Persona Imitation Game - School Project (Front-End)
 
 ### Introduction
 Based on the popular Atlus game, Shin Megami Tensei, players answer a questionnaire which determines their distinct personas and challenge a computer-controlled persona. 
@@ -9,5 +9,5 @@ Based on the popular Atlus game, Shin Megami Tensei, players answer a questionna
 - MAC 
 
 ### Made With:
-- HTML, CSS, JavaScript
+- HTML, CSS, JavaScript, Ruby on Rails
 
